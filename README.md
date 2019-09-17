@@ -1,5 +1,5 @@
 # Random-Straws-Drawer
-This is a side project that I use for gaining knowledge on web development and database implementation.
+This is a side project that I use for gaining knowledge on web development and database implementation. Functions and User Interface are keep updating and adjusting. 
 
 ## Purpose:
 
