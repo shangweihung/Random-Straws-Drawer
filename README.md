@@ -36,3 +36,9 @@ Root
 #### 4. csv
 #### 5. datetime 
 #### 6. traceback
+
+
+## How to view this system?
+#### 1. `members.db` is provided. If not provided, run `write_db.py` first.
+#### 2. Run `main.py`
+#### 3. Open browser, Type `localhost:5000` or `http://127.0.0.1:5000/`
