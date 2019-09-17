@@ -16,14 +16,13 @@ Root
 |    members.db                 Database example after run write_db.py
 |    README.md
 |
-|
 +----templates                  Save html files
 |   | base.html
 |   | index.html                Main Page                 
 |   | draw.html                 Draw Straw
 |   | history.html              Show history record        
-|   |
-|   |                        
+|   | addmember.html            Add new member
+|   | showmember.html           Show current member list
 |   |
 ```
 
