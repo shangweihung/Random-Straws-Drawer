@@ -9,7 +9,7 @@
   <thead>
     <tr>
       <th>名字</th>
-      <th>團體</th>
+      <th>性別</th>
       <th>抽中時間</th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
     {% for history in recent_histories %}
     <tr>
       <td>{{ history.name }}</td>
-      <td>{{ history.group }}</td>
+      <td>{{ history.gender }}</td>
       <td>{{ history.draw_time.strftime("%Y 年 %m 月 %d 日 %H 時 %M 分") }}</td>
     </tr>
     {% endfor %}
