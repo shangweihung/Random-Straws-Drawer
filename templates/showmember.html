@@ -1,0 +1,24 @@
+<!-- templates/showmember.html -->
+{% extends "base.html" %}
+
+{% block title %}顯示成員{% endblock title %}
+
+{% block content %}
+<h1>顯示所有成員</h1>
+<table>
+    <thead>
+      <tr>
+        <th>名字</th>
+        <th>團體</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in members %}
+      <tr>
+        <td>{{ m.name }}</td>
+        <td>{{ m.gender }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
