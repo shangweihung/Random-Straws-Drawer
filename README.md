@@ -14,6 +14,7 @@ Root
 |    members.csv                Members list prototype
 |    write_db.py                Write the first database
 |    members.db                 Database example after run write_db.py
+|    config.ini
 |    README.md
 |
 +----templates                  Save html files
@@ -23,14 +24,14 @@ Root
 |   | history.html              Show history record        
 |   | addmember.html            Add new member
 |   | showmember.html           Show current member list
-|   |
+|   | login.html                (To be continued)
 ```
 
 ## Required packages
 **Python version**: `3.7.3`
 **Development Environment**: `Ubuntu 18.04`
 
-#### 1. flask   <--- the most important one
+#### 1. flask   <--- tvim
 #### 2. sqlite3
 #### 3. random
 #### 4. csv
