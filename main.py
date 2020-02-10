@@ -1,25 +1,90 @@
 import csv
 import sqlite3
 import random
-from flask import Flask,g, render_template, request
+from flask import Flask,g, render_template, request, url_for, redirect, flash
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from datetime import datetime
 import traceback
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
 
 app = Flask(__name__)
+app.secret_key = config.get('flask', 'secret_key')
 
 # File name and Path 
-SQLITE_DB_PATH ='members.db'
-SQLITE_DB_SCHEMA ='create_db.sql'
-MEMBER_CSV_PATH ='member.csv'
+SQLITE_DB_PATH = config.get('path', 'SQLITE_DB_PATH')
+SQLITE_DB_SCHEMA = config.get('path', 'SQLITE_DB_SCHEMA')
+MEMBER_CSV_PATH = config.get('path', 'MEMBER_CSV_PATH')
+
+# Login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.session_protection = "strong"
+login_manager.login_view = 'login'
+login_manager.login_message = 'Please Log In ~'
+
 
 
 @app.route('/')
 def index():
-    #return "<p>Hello World!</p>"
     return render_template('index.html')
 
+class User(UserMixin):
+        pass
 
 
+
+users = {'ShangWei': {'password': '00000000'}}
+
+
+
+
+@login_manager.user_loader
+def user_loader(login_name):
+    if login_name not in users:
+        return
+
+    user = User()
+    user.id = login_name
+    return user
+
+@login_manager.request_loader
+def request_loader(request):
+    login_name = request.form.get('user_id')
+    if login_name not in users:
+        return
+
+    user = User()
+    user.id = login_name
+    user.is_authenticated = request.form['password'] == users[login_name]['password']
+    return user
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template("login.html")
+
+    login_name = request.form['user_id']
+    if (login_name in users) and (request.form['password'] == users[login_name]['password']):
+        user = User()
+        user.id = login_name
+        login_user(user)
+        flash(f'Welcome Log In !!')
+        return render_template('index.html')
+    flash('Login Failure...')
+    return render_template('login.html')
+
+@app.route('/logout')        
+def logout():
+    login_name = current_user.get_id()
+    logout_user()
+    
+    return render_template('index.html')
+                                                                                                                                                
 # SQLITE3-related operations
 def get_db():
     db = getattr(g,'_database',None)
@@ -37,6 +102,7 @@ def close_connection(exception):
         db.close()
 
 @app.route('/addmember')
+@login_required
 def addmember():
     return render_template('addmember.html')
 
@@ -65,8 +131,6 @@ def getAddMemberRequest():
 
     db.close()
    
-
-
 
 
 @app.route('/showmember')
@@ -183,11 +247,14 @@ def reset_db():
         db.executemany('INSERT INTO members (name,gender) VALUES(?,?)',members)
 
 @app.route('/reset')
+@login_required
 def reset():
     with app.app_context():
         reset_db()
 
     return render_template('index.html')
+
+
 
 if __name__ =="__main__":
     app.run(debug=True)

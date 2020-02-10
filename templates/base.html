@@ -3,10 +3,20 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+    	<meta name="viewport" content="width=device-width">
+
+    	<link rel="stylesheet" href="{{url_for('static',filename='css/custom.css') }}">
+    	<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
+    	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap">
+	
+    	<style> body {font-family: 'Noto Sans TC', sans-serif;}</style>
+	
         <title>{% block title %}Random Drawer System{% endblock title %}</title>
     </head>
     <body>
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+
         {% block content %}{% endblock content %}
         <hr>
         <h3>Items</h3>
@@ -15,7 +25,12 @@
             <li><a href="/history">Historical Record</a></li>
             <li><a href="/reset">Reset Database</a></li>
             <li><a href="/addmember">Add New Member</a></li>
-            <li><a href='/showmember'>Show All Current Members</a></li>
-        </ul>
+            <li><a href="/showmember">Show All Current Members</a></li>
+
+	    {% if current_user.is_authenticated %}
+	        <li><a href="/logout">Log Out</a></li>
+	    {% else %}
+	        <li><a href="/login">Log In</a></li>
+	    {% endif %}
     </body>
 </html>
