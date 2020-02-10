@@ -1,16 +1,16 @@
 <!-- templates/history.html -->
 {% extends "base.html" %}
 
-{% block title %}抽籤歷史{% endblock title %}
+{% block title %}Historical Records{% endblock title %}
 
 {% block content %}
-<h1>抽籤歷史（最近 10 筆）</h1>
+<h1>The latest 10 records</h1>
 <table>
   <thead>
     <tr>
-      <th>名字</th>
-      <th>性別</th>
-      <th>抽中時間</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Time</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +18,7 @@
     <tr>
       <td>{{ history.name }}</td>
       <td>{{ history.gender }}</td>
-      <td>{{ history.draw_time.strftime("%Y 年 %m 月 %d 日 %H 時 %M 分") }}</td>
+      <td>{{ history.draw_time.strftime("%Y / %m / %d - %H : %M") }}</td>
     </tr>
     {% endfor %}
   </tbody>

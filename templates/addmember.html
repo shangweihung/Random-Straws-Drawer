@@ -1,17 +1,17 @@
 <!-- templates/addmember.html -->
 {% extends "base.html" %}
 
-{% block title %}加入成員{% endblock title %}
+{% block title %}Add Member{% endblock title %}
 
 {% block content %}
-<h1>加入成員</h1>
+<h1>Add Member</h1>
 <form method="get" action='/registermember'>
-    <label for="name">名稱：</label>
+    <label for="name">Name：</label>
     <input type="text" name="name" value="">
-    <label for="gender">性別：</label>
+    <label for="gender">Gender：</label>
     <input type="radio" name="gender" value="Male">Male
     <input type="radio" name="gender" value="Female">Female
 
-    <input type="submit" value="加入此成員">
+    <input type="submit" value="Add this person into database">
 </form>
 {% endblock content %}

@@ -2,10 +2,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>隨機抽籤系統!!</h1>
-  <p>選擇要被抽的性別</p>
+  <h1>Random Drawer System</h1>
+  <p>Choose Gender you want to select</p>
   <form action="/draw" method="post">
-    <label for="gender">性別：</label>
+    <label for="gender">Gender：</label>
     <input type="radio" name="gender" value="Male">Male
     <input type="radio" name="gender" value="Female">Female
     <input type="radio" name="gender" value="ALL" checked>All

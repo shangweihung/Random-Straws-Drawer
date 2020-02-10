@@ -176,7 +176,7 @@ def reset_db():
     # read members csv data
     with open('./members.csv', newline='') as f:
         csv_reader = csv.DictReader(f)
-        members = [ (row['名字'], row['性別'])   for row in csv_reader]
+        members = [ (row['Name'], row['Gender'])   for row in csv_reader]
 
     # write members into database
     with db:
