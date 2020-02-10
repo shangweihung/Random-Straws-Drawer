@@ -3,7 +3,7 @@ This is a side project that I use for gaining knowledge on web development and d
 
 ## Purpose:
 
-Provide a system for user to randomly pick up members in database by some condition. Besides, the members can be added from web. 
+Provide a system for user to randomly pick up members in database by some condition. Besides, the members can be added from web and the database can be resetted. Furthermore, login-logout feature is appended recently. 
 
 ## File Structure
 ```
@@ -14,7 +14,7 @@ Root
 |    members.csv                Members list prototype
 |    write_db.py                Write the first database
 |    members.db                 Database example after run write_db.py
-|    config.ini
+|    config.ini                 Record path and config
 |    README.md
 |
 +----templates                  Save html files
@@ -24,12 +24,16 @@ Root
 |   | history.html              Show history record        
 |   | addmember.html            Add new member
 |   | showmember.html           Show current member list
-|   | login.html                (To be continued)
+|   | login.html                Login to access some private function
+|
++----static                  
+    |
+    +----css
+    +----js
 ```
 
 ## Required packages
 **Python version**: `3.7.3`
-**Development Environment**: `Ubuntu 18.04`
 
 #### 1. flask   <--- tvim
 #### 2. sqlite3
